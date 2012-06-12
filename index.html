@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+	<script src="https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael-min.js"></script>
+</head>
+
+
+
+<body>
+<div><img src="new_york.jpg"></img></div>
+<div id="cc1" style="width:720px;height:180px;clear:both;"></div>
+<a href="javascript:anim1();">Play animation 1</a><br/>
+<a href="javascript:anim2();">Play animation 2</a><br/>
+<a href="javascript:anim3();">Play animation 3</a>
+
+<!--<canvas id="canvas" width="200" height="300"></canvas>-->
+<!--<img src="http://localhost:8080/pixelizr/" alt="Out of the Vein" />-->
+
+<script src="pixelizr.js"></script>
+<script>
+
+var paper = new Raphael(document.getElementById('cc1'),720,180);
+function anim1() {  
+	paper.clear(); 
+	paper.pixelizr({ imageSource: 'new_york.jpg', 
+		step: 10, 
+		mode: "circ" 
+		,animation: function(elm, x,y){
+			var anim = Raphael.animation({cx: 2, cy: 2, r: 1}, 2e3, function(){
+				//alert('beam me up scotty');
+				var anim2 = Raphael.animation({cx: (x+4), cy: (y+4), r: 4}, 2e3);
+			    elm.animate(anim2.delay(500+x*5+y*7))
+			});
+			elm.animate(anim.delay(500+x*10+y*10)); }
+	});
+}
+
+function anim2() {  
+	//var paper = new Raphael(document.getElementById('cc1'),720,180);//, can.width,can.height);  
+	paper.clear();
+	paper.pixelizr({ imageSource: 'new_york.jpg', 
+		step: 10, 
+		mode: "circ" 
+		,animation: function(elm, x,y){
+			var anim = Raphael.animation({r: 1}, 2e3, function(){
+				//alert('beam me up scotty');
+				var anim2 = Raphael.animation({r: 5}, 2e3);
+			    elm.animate(anim2.delay(500+x*10+y*10))
+			}).delay(500+x*10+y*10);
+			elm.animate(anim);
+			}
+	});
+}
+
+function anim3() {  
+	//var paper = new Raphael(document.getElementById('cc1'),720,180);//, can.width,can.height);  
+	paper.clear();
+	paper.pixelizr({ imageSource: 'new_york.jpg', 
+		step: 10, 
+		mode: "circ" 
+		,animation: function(elm, x,y){
+			var anim = Raphael.animation({cx: (Math.random()*720), cy: (Math.random()*180), r: (Math.random()*15)}, 2e3, function(){
+				var anim2 = Raphael.animation({cx: (x+4), cy: (y+4), r: 4}, 2e3);
+			    elm.animate(anim2.delay(500));
+			}).delay(Math.random()*2000);
+			elm.animate(anim);
+			}
+	});
+}
+
+</script>
+
+</body>
+</html>
