@@ -1,63 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset=utf-8>
-	<script src="https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael-min.js"></script>
-</head>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pixelizr by gsmith85</title>
 
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<script src="raphael-min.js"></script>
+	<script>
+		Raphael.fn.arrow = function (x1, y1, x2, y2, size) {
+			return this;
+		};
+	</script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	<style>
+		.seuratjs-example{cursor:pointer;}
+	</style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>SeuratJS</h1>
+        <p>A Raphaël plugin for creating beautiful pointilized animations.</p>
+		<p><div id="cc1" style="width:235px;height:329px;clear:both;"></div></p>
 
+		<ul>
+          <li><a href="https://github.com/gsmith85/seuratjs/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/gsmith85/seuratjs/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/gsmith85/seuratjs">View On <strong>GitHub</strong></a></li>
+        </ul>
 
-<body>
-<div><img src="new_york.jpg"></img></div>
-<div id="cc1" style="width:720px;height:180px;clear:both;"></div>
-<a href="javascript:anim1();">Play animation 1</a><br/>
-<a href="javascript:anim2();">Play animation 2</a><br/>
-<a href="javascript:anim3();">Play animation 3</a><br/>
-<a href="javascript:anim4();">Play animation 4</a><br/>
+        <p class="view">
+			<a href="https://github.com/gsmith85/seuratjs">View the Project on GitHub <small>gsmith85/seuratjs</small></a>
+		</p>
+		
+      </header>
+      <section>
+        <h3>Pointilize and Pixelize all on the Client Side</h3>
 
+		<p>SeuratJS is a JavaScript library that extends Raphaël and allows for the creation of vivid animations and pixelated artwork using minimal code.  It does this by extacting color data from an image of your choice and rebuilding the original with filled graphical primitives in SVG.  Seurat makes it extremely easy to alter what primitives are generated (how they look and where they appear) and animate (how they subsequently move).</p>
 
-<script src="seurat.js"></script>
+		<p>SeuratJS uses the HTML5 canvas to parse color data and, because of this, the library operates <b>entirely on the client side</b>.</p>
+
+		<h3>The Basics (Click the images!)</h3>
+
+		<p><img src="s1.png" id="ex1" class='seuratjs-example' animation="a1" /></p>
+		<pre><code>paper.seurat({ imageSource: 'myimg.png' });</code></pre>
+
+		<p style='clear:both'><img src="s2.png" id="ex2" class='seuratjs-example' animation="a2"></img></p>
+		<pre><code>paper.seurat({ imageSource: 'myimg.png', shape: "rect"});</code></pre>
+
+		
+		<h3>Now Let's Get Things Moving (Keep clicking!)</h3>
+
+<p style='clear:both'><img src="s3.png" id="ex3" class='seuratjs-example' animation="a3"></img></p>
+<pre><code>paper.seurat({ imageSource: 'myimg.png',
+  attributes: {r: 2, stroke: "none"},
+  animator: function(elm, x,y,step){
+	var anim = Raphael.animation({r: 7}, 350);
+	elm.animate(anim.delay(35*y));
+  });
+</code></pre>
+
+<p style='clear:both'><img src="s4.png" id="ex4" class='seuratjs-example' animation="a4"></img></p>
+<pre><code>paper.seurat({ imageSource: 'myimg.png',
+  animator: function(elm, x,y,step){
+	var anim = Raphael.animation({cx: 2, cy: 2, r: 1}, 2e3,
+	  function(){
+		var anim = Raphael.animation({cx: (x+step/2), 
+		  cy: (y+step/2), r: (step/2-1)}, 2e3);
+		elm.animate(anim.delay(500+x*5+y*7))
+	});
+	elm.animate(anim.delay(500+x*10+y*10)); 
+  }});
+</code></pre>
+
+<p style='clear:both'><img src="s5.png" id="ex5" class='seuratjs-example' animation="a5"></img></p>
+<pre><code>ppr.seurat({ imageSource: $(img).attr('src'),
+  animator: function(elm, x,y,step){
+  var anim = Raphael.animation({cx: (Math.random()*720), 
+    cy: (Math.random()*180), r: (Math.random()*15)}, 2e3, 
+    function(){
+	  var anim2 = Raphael.animation({cx: (x+4), cy: (y+4), 
+		  r: (step/2-1)}, 2e3);
+		elm.animate(anim2.delay(500));
+	}).delay(Math.random()*2000);
+	elm.animate(anim);
+  }});
+</code></pre>
+
+<p style='clear:both'><img src="s6.png" id="ex6" class='seuratjs-example' animation="a6"></img></p>
+<pre><code>paper.seurat({ imageSource: 'myimg.png',
+  step: 6,
+  generator: function(ppr,x,y,color,step,attributes){
+	return ppr.circle(x, 1, step/2-1)
+		.attr({fill: color}).attr(attributes);
+	},
+  animator: function(elm, x,y,step){
+	var anim = Raphael.animation({cx: x, cy: y, r: 4}, 2e3);
+	elm.animate(anim.delay(500));
+	}
+  });
+</code></pre>
+
+<h3>Take it for a Spin</h3>
+
+<p>Now that you’ve seen how easy it is to use SeuratJS, grab a copy off the source, a copy of <a href="http://raphaeljs.com/" target="_blank">RaphaelJS</a>, and create some stunning work of your own.  The examples above are a great starting point and demonstrate using all of the settings.  However, for a more complete reference, the various settings are enumerated below.</p>
+
+<p>
+<b>imageSource</b> - A path to the image you are going to pointalize.  (<b>REQUIRED</b>)
+<br/><b>step</b> - A number determining the pixels between color samples in the image.  Used for both the x and y directions.  By default 10.
+<br/><b>shape</b> - A string indicating which built in primitive generator to use.  Either 'circ' or 'rect'.  By default 'circ'.
+<br/><b>attributes</b> - An associative array describing the attibutes each primitive will have to start.  By default {stroke: "none"}.
+<br/><b>animator(element,x,y,step)</b> - A function to provide each primitive with an animation. <b>element</b> is a generated primitive with the color sample from (<b>x</b>,<b>y</b>).  <b>step</b> is as described above.
+<br/><b>generator(paper,x,y,color,step,attributes)</b> - A function to create an element object corresponding to sample (<b>x</b>,<b>y</b>) from the image.  <b>paper</b> is the Raphael object we are drawing to.  <b>step</b> and <b>attributes</b> are as described above.   Must return Raphaël element object
+</p>
+
+<h3>Compatibility and Performance</h3>
+
+<p>SeuratJS' performance is largely tied to your browser's ability to handle SVG.  SeuratJS runs extremely well in IE9 and Chrome.  Surprisingly, Firefox can be slightly choppy with a large number of elements. </p>
+<p>Long story short, the fewer things moving at one time, the smoother your animation is going to be.  If you run into a situation where performance is unsatisfactory, either increase the step size when calling seurat() or increase your animation delays if performance isn't to your liking.</p>
+
+<h3>Authors and Contributors</h3>
+<p>SeuratJS is the work of Greg Smith (<a href="https://github.com/gsmith85" class="user-mention">@gsmith85</a>).  A special thanks to Scott Werner (<a href="https://github.com/swerner" class="user-mention">@swerner</a>) for being a second pair of eyes.  I would hugely appreciate if people contribute!  If you find a bug, report it.  If you want to write some code, hack it.  If you want to make suggestions, I'm all ears.</p>
+
+      </section>
+      <footer>
+        <!--<p>This project is maintained by <a href="https://github.com/gsmith85">gsmith85</a></p>-->
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://seuratjs.com" data-text="A #RaphaelJS plugin for creating beautiful pointilized animations." data-hashtags="SeuratJS">Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    <script src="seurat.js"></script>
 <script>
 
-var paper = new Raphael(document.getElementById('cc1'),720,180);
-function anim1() {  
-	paper.clear(); 
-	paper.seurat({ imageSource: 'new_york.jpg', 
-		step: 10, 
-		mode: "circ" 
-		,animation: function(elm, x,y,step){
+
+function a1(ppr,img){
+	ppr.seurat({ imageSource: $(img).attr('src')});
+}
+function a4(ppr,img){
+	ppr.seurat({ imageSource: $(img).attr('src'),
+		animator: function(elm, x,y,step){
 			var anim = Raphael.animation({cx: 2, cy: 2, r: 1}, 2e3, function(){
-				//alert('beam me up scotty');
-				var anim2 = Raphael.animation({cx: (x+step/2), cy: (y+step/2), r: (step/2-1)}, 2e3);
-			    elm.animate(anim2.delay(500+x*5+y*7))
+				var anim = Raphael.animation({cx: (x+step/2), cy: (y+step/2), r: (step/2-1)}, 2e3);
+			    elm.animate(anim.delay(500+x*5+y*7))
 			});
 			elm.animate(anim.delay(500+x*10+y*10)); }
 	});
 }
 
-function anim2() {  
-	//var paper = new Raphael(document.getElementById('cc1'),720,180);//, can.width,can.height);  
-	paper.clear();
-	paper.seurat({ imageSource: 'new_york.jpg', 
-		step: 10, 
-		mode: "circ" 
-		,animation: function(elm, x,y,step){
-			var anim = Raphael.animation({r: 1}, 2e3, function(){
-				//alert('beam me up scotty');
-				var anim2 = Raphael.animation({r: (step/2-1+x*.005)}, 2e3);
-			    elm.animate(anim2.delay(200+x*2))
-			}).delay(200+x*2);
+function a3(ppr,img){
+	ppr.seurat({ imageSource: $(img).attr('src')
+		,attributes : {r: 2, stroke: "none"}
+		,animator: function(elm, x,y,step){
+			var anim = Raphael.animation({r: 7}, 350).delay(35*y);
 			elm.animate(anim);
 			}
 	});
 }
 
-function anim3() {   
-	paper.clear();
-	paper.seurat({ imageSource: 'new_york.jpg', 
-		step: 10, 
-		mode: "circ" 
-		,animation: function(elm, x,y,step){
+function a2(ppr,img){
+	ppr.seurat({ imageSource: $(img).attr('src'), shape: "rect" });
+}
+
+function a5(ppr,img){
+	ppr.seurat({ imageSource: $(img).attr('src'),
+		animator: function(elm, x,y,step){
 			var anim = Raphael.animation({cx: (Math.random()*720), cy: (Math.random()*180), r: (Math.random()*15)}, 2e3, function(){
 				var anim2 = Raphael.animation({cx: (x+4), cy: (y+4), r: (step/2-1)}, 2e3);
 			    elm.animate(anim2.delay(500));
@@ -67,29 +184,45 @@ function anim3() {
 	});
 }
 
-function anim4() {  
-	paper.clear();
-	paper.seurat({ imageSource: 'new_york.jpg', 
-		step: 6, 
-		mode: "circ" 
-		,generation: function(ppr,x,y,color,step,attributes){
-			return ppr.circle(x, 1, step/2-1).attr({fill: color}).attr(attributes);
+function a6(ppr,img){
+	ppr.seurat({ imageSource: $(img).attr('src'),
+	step: 6,
+	generator: function(ppr,x,y,color,step,attributes){
+		return ppr.circle(x, 1, step/2-1)
+			.attr({fill: color}).attr(attributes);
+		},
+	animator: function(elm, x,y,step){
+		var anim = Raphael.animation({cx: x, cy: y, r: 4}, 2e3);
+		elm.animate(anim.delay(500));
 		}
-		,animation: function(elm, x,y,step){
-			var anim2 = Raphael.animation({cx: x, cy: y, r: 4}, 2e3);
-			elm.animate(anim2.delay(500));
-				
-			/*var anim = Raphael.animation({cx: (Math.random()*720), cy: (Math.random()*180), r: (Math.random()*15)}, 2e3, function(){
-				var anim2 = Raphael.animation({cx: (x+4), cy: (y+4), r: (step/2-1)}, 2e3);
-			    elm.animate(anim2.delay(500));
-			}).delay(Math.random()*2000);
-			elm.animate(anim);*/
-			
-			}
 	});
 }
 
-</script>
 
-</body>
+$(document).ready(function(){
+
+	$('.seuratjs-example').click(function(){
+		var width = $(this).width(); var height = $(this).height();
+		var cnv = $('<div id="'+$(this).attr('id')+'"></div>').width(width).height(height);		
+		$(this).replaceWith(cnv);
+		var ppr = new Raphael(document.getElementById($(this).attr('id')),width,height+5);
+		window[$(this).attr('animation')](ppr,$(this));
+	});
+});
+
+var paper = new Raphael(document.getElementById('cc1'),235,329);
+function anim1() {  
+	paper.clear(); 
+	paper.seurat({ imageSource: 'Georges_Seurat_1888.jpg', 
+		step: 6
+	});
+	
+	var paper2 = new Raphael(document.getElementById('cc2'),500,150);
+	paper2.seurat({ imageSource: 's1.png'});
+}
+
+anim1();
+
+</script>
+  </body>
 </html>
