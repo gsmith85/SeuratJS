@@ -1,13 +1,24 @@
-/* All code (c) Greg Smith */
+/*!
+ * Seurat JavaScript Plugin v0.1
+ * http://seuratjs.com/
+ *
+ * Tested with Raphael JavaScript Library v2.1
+ * http://raphaeljs.com/
+ *
+ * Copyright 2012, Greg Smith
+ * http://gregoryryansmith.com/
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ */
 
-Raphael.fn.pixelizr = function (settings) { //imageSrc, diameter, mode, anim
+Raphael.fn.seurat = function (settings) {
 	settings = settings || {};
 	var imageSource = settings.imageSource || null;
 	var step = settings.step || 10;
-	var mode = settings.step || "circ";
-	var animation = settings.animation || null;
+	var shape = settings.shape || "circ";
 	var attributes = settings.attributes || {stroke: "none"};
-	var generation = settings.generation || null;
+	
+	var animator = settings.animator || null;
+	var generator = settings.generator || null;
 
 	var ppr = this;
 	var can = document.createElement('canvas');
@@ -42,14 +53,15 @@ Raphael.fn.pixelizr = function (settings) { //imageSrc, diameter, mode, anim
 			var elm;
 			var color = getColorAt(x+center,y+center);
 			
-			if(generation != null) 
-				generation(x,y,color,attr)
+			if(generator != null){			
+				elm = generator(ppr,x,y,color,step,attributes);
+			}
 			else{
-				if(mode == "rect") elm = defaultRect(x,y,color);
+				if(shape == "rect") elm = defaultRect(x,y,color);
 				else elm = defaultCirc(x,y,color);
 			}
 			
-			if(animation!=null) animation(elm,x,y);
+			if(animator!=null) animator(elm,x,y,step);
 		}
 	}
 	img.src = imageSource;
