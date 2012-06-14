@@ -7,7 +7,7 @@
 
 ##Pointilize and Pixelize all on the Client Side
 
-SeuratJS is a JavaScript library that extends Raphaël and allows for the creation of vivid animations and pixelated artwork using minimal code. It does this by extacting color data from an image of your choice and rebuilding the original with filled graphical primitives in SVG. Seurat makes it extremely easy to alter what primitives are generated (how they look and where they appear) and animate (how they subsequently move).
+SeuratJS is a JavaScript library that extends Raphaël and allows for the creation of vivid animations and pixelated artwork using minimal code. It does this by extacting color data from an image of your choice and rebuilding the original with filled graphical primitives in SVG. Seurat makes it extremely easy to alter what primitives are generated (how they look and where they appear) and how they animate.
 
 SeuratJS uses the HTML5 canvas to parse color data and, because of this, the library operates **entirely on the client side**.
 
@@ -37,4 +37,4 @@ Long story short, the fewer things moving at one time, the smoother your animati
 
 SeuratJS is the work of Greg Smith (@gsmith85). A special thanks to Scott Werner (@swerner) for being a second pair of eyes. 
 
-I would hugely appreciate if people contribute. If you find a bug, report it. If you want to write some code, hack it. If you want to make suggestions, I'm all ears.  Let's build something awesome together!
+Anyone else out there, feel free to contribute!  If you find a bug, report it.  If you want to write some code, hack it.  If you want to make suggestions, let us know what you need.  Let's build something awesome together!
