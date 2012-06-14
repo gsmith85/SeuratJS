@@ -13,11 +13,9 @@ SeuratJS uses the HTML5 canvas to parse color data and, because of this, the lib
 
 ##Take it for a Spin
 
-Now that you’ve seen how easy it is to use SeuratJS you’ll be happy to know that the only other thing you’ll need is RaphaelJS 2 or better.
+Now that you’ve seen how easy it is to use SeuratJS, grab a copy off the source, a copy of RaphaelJS (http://raphaeljs.com/), and create some stunning work of your own.  The examples above are a great starting point and demonstrate using all of the settings.  However, for a more complete reference, the various settings are enumerated below.
 
-Once you have that, the only other thing you need to know about are the options:
-
-**imageSource** - A path to the image you are going to pointalize. (REQUIRED) 
+**imageSource** - A path to the image you are going to pointalize. This is the only **REQUIRED** setting.
 
 **step** - A number determining the pixels between color samples in the image. Used for both the x and y directions. By default 10. 
 
@@ -37,4 +35,6 @@ Long story short, the fewer things moving at one time, the smoother your animati
 
 ##Authors and Contributors
 
-SeuratJS is the work of Greg Smith (@gsmith85). A special thanks to Scott Werner (@swerner) for being a second pair of eyes. I would hugely appreciate if people contribute! If you find a bug, report it. If you want to write some code, hack it. If you want to make suggestions, I'm all ears.
+SeuratJS is the work of Greg Smith (@gsmith85). A special thanks to Scott Werner (@swerner) for being a second pair of eyes. 
+
+I would hugely appreciate if people contribute. If you find a bug, report it. If you want to write some code, hack it. If you want to make suggestions, I'm all ears.  Let's build something awesome together!
