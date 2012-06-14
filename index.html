@@ -82,7 +82,7 @@
 </code></pre>
 
 <p style='clear:both'><img src="s5.png" id="ex5" class='seuratjs-example' animation="a5"></img></p>
-<pre><code>ppr.seurat({ imageSource: $(img).attr('src'),
+<pre><code>paper.seurat({ imageSource: $(img).attr('src'),
   animator: function(elm, x,y,step){
   var anim = Raphael.animation({cx: (Math.random()*720), 
     cy: (Math.random()*180), r: (Math.random()*15)}, 2e3, 
@@ -128,7 +128,8 @@
 <p>Long story short, the fewer things moving at one time, the smoother your animation is going to be.  If you run into a situation where performance is unsatisfactory, either increase the step size when calling seurat() or increase your animation delays if performance isn't to your liking.</p>
 
 <h3>Authors and Contributors</h3>
-<p>SeuratJS is the work of Greg Smith (<a href="https://github.com/gsmith85" class="user-mention">@gsmith85</a>).  A special thanks to Scott Werner (<a href="https://github.com/swerner" class="user-mention">@swerner</a>) for being a second pair of eyes.  I would hugely appreciate if people contribute!  If you find a bug, report it.  If you want to write some code, hack it.  If you want to make suggestions, I'm all ears.</p>
+<p>SeuratJS is the work of Greg Smith (<a href="https://github.com/gsmith85" class="user-mention">@gsmith85</a>).  A special thanks to Scott Werner (<a href="https://github.com/swerner" class="user-mention">@swerner</a>) for being a second pair of eyes.</p>  
+<p>Anyone else out there, feel free to contribute!  If you find a bug, report it.  If you want to write some code, hack it.  If you want to make suggestions, let us know what you need.  Let's build something awesome together.</p>
 
       </section>
       <footer>
@@ -213,7 +214,7 @@ $(document).ready(function(){
 var paper = new Raphael(document.getElementById('cc1'),235,329);
 function anim1() {  
 	paper.clear(); 
-	paper.seurat({ imageSource: 'Georges_Seurat_1888.jpg', 
+	paper.seurat({ imageSource: 'george.jpg', 
 		step: 6
 	});
 	
