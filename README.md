@@ -2,7 +2,7 @@
 
 **A Raphaël plugin for creating beautiful pointilized animations.**
 
-**Website**: http://seauratjs.com
+**Website**: http://seuratjs.com
 
 
 ##Pointilize and Pixelize all on the Client Side
