@@ -82,7 +82,7 @@ _gaq.push(['_trackPageview']);
 
 <p style='clear:both'><img src="s4.png" id="ex4" class='seuratjs-example' animation="a4"></img></p>
 <pre><code>paper.seurat({ imageSource: 'eiffle-tower.png',
-  animator: function(elm, x,y,step){
+  animator: function(elm,x,y,step){
 	var anim = Raphael.animation({cx: 2, cy: 2, r: 1}, 2e3,
 	  function(){
 		var anim = Raphael.animation({cx: (x+step/2), 
@@ -95,7 +95,7 @@ _gaq.push(['_trackPageview']);
 
 <p style='clear:both'><img src="s5.png" id="ex5" class='seuratjs-example' animation="a5"></img></p>
 <pre><code>paper.seurat({ imageSource: 'circus-sideshow.png',
-  animator: function(elm, x,y,step){
+  animator: function(elm,x,y,step){
   var anim = Raphael.animation({cx: (Math.random()*720), 
     cy: (Math.random()*180), r: (Math.random()*15)}, 2e3, 
     function(){
@@ -114,7 +114,7 @@ _gaq.push(['_trackPageview']);
 	return ppr.circle(x, 1, step/2-1)
 		.attr({fill: color}).attr(attributes);
 	},
-  animator: function(elm, x,y,step){
+  animator: function(elm,x,y,step){
 	var anim = Raphael.animation({cx: x, cy: y, r: 4}, 2e3);
 	elm.animate(anim.delay(500));
 	}
