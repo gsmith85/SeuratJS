@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SeuratJS &mdash; Generation</title>
+  
+  <script type="text/javascript" src="https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="../seurat.js"></script>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="examples.css" />
+  <script type="text/javascript">
+    var map;
+    $(document).ready(function(){
+      $('.seuratjs-example').click(function(){
+		var width = $(this).width(); var height = $(this).height();
+		
+		/* We are replacing the original image with a div that will serve as Raphael's container. */
+		var raphaelContainer = $('<div id="'+$(this).attr('id')+'"></div>')
+			.width(width)
+			.height(height);		
+		$(this).replaceWith(raphaelContainer);
+		
+		var paper = new Raphael(document.getElementById($(this).attr('id')),width,height+5);
+		
+		/* SeuratJS code */
+		paper.seurat({ imageSource: 'imgs/eiffle-tower.png',
+			generator: function(ppr,x,y,color,step,attributes){
+				return ppr.circle(Math.random()*x, Math.random()*y, Math.random()*7)
+					.attr({fill: color}).attr(attributes);
+					},
+			animator: function(elm, x,y,step){elm.animate(Raphael.animation({r: 10,cx: x+step/2,cy: y+step/2}, 2e3));}		
+					});
+		});
+    });
+  </script>
+</head>
+<body>
+  <h1>SeuratJS &mdash; Generation</h1>
+  <div class="row">
+    <div class="span9">
+      <pre><img src="imgs/eiffle-tower.png" id="ex1" class='seuratjs-example' /></pre>
+    </div>
+    <div class="span7">
+      <p>The <b>generator</b> function allows for the ultimate level of flexibility in SeuratJS and provides the ability to create jaw-dropping animations.  Using the generator you can alter everything from the sample coordinates (<b>x</b>,<b>y</b>) to the <b>color</b>.  
+	  As a result you are responsible for generating a Rapha&euml;l element (use <b>ppr</b> which is your current Rapha&euml;l canvas) and returning it.  You can see more great examples of using generators at <a href='http://seuratjs.com' target='_blank'>SeuratJS Website</a>.</p>
+      <pre>
+paper.seurat({ imageSource: 'imgs/eiffle-tower.png',
+  generator: function(ppr,x,y,color,step,attributes){
+    return ppr.circle(Math.random()*x, 
+	  Math.random()*y, Math.random()*7)
+            .attr({fill: color}).attr(attributes);
+    },
+  animator: function(elm, x,y,step){
+    elm.animate(
+	  Raphael.animation({r: 10, 
+	    cx: x+step/2,cy: y+step/2}, 2e3));}
+});
+</pre>
+      <p><span class="label notice">Note</span> <strong>paper</strong> is a Rapha&euml;l canvas object as defined <a href="http://raphaeljs.com/reference.html#Raphael">here</a>.</p>
+      <p><span class="label important">Chrome Users</span> Because SeuratJS uses the HTML5 canvas element if you are attempting to debug from file:// as opposed to a local webserver you will need to run Chrome using the <b>--allow-file-access-from-files</b> flag.  More info <a href="http://joshuamcginnis.com/2011/02/28/how-to-disable-same-origin-policy-in-chrome/" target="_blank">here</a>.</p>
+    </div>
+  </div>
+</body>
+</html>
