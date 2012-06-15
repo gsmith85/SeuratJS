@@ -180,7 +180,8 @@ footer {
   width:270px;
   float:left;
   position:fixed;
-  bottom:50px;
+  /*bottom:50px;*/
+  top:625px;
 }
 
 @media print, screen and (max-width: 960px) {
