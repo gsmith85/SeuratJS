@@ -126,18 +126,18 @@ _gaq.push(['_trackPageview']);
 <p>Now that you’ve seen how easy it is to use SeuratJS, grab a copy off the source, a copy of <a href="http://raphaeljs.com/" target="_blank">RaphaelJS</a>, and create some stunning work of your own.  The examples above are a great starting point and demonstrate using all of the settings.  However, for a more complete reference, the various settings are enumerated below.</p>
 
 <p>
-<b>imageSource</b> - A path to the image you are going to pointalize.  (<b>REQUIRED</b>)
+<b>imageSource</b> - A path to the image you are going to pointalize.  <b>REQUIRED</b>
 <br/><b>step</b> - A number determining the pixels between color samples in the image.  Used for both the x and y directions.  By default 10.
-<br/><b>shape</b> - A string indicating which built in primitive generator to use.  Either 'circ' or 'rect'.  By default 'circ'.
-<br/><b>attributes</b> - An associative array describing the attibutes each primitive will have to start.  By default {stroke: "none"}.
-<br/><b>animator(element,x,y,step)</b> - A function to provide each primitive with an animation. <b>element</b> is a generated primitive with the color sample from (<b>x</b>,<b>y</b>).  <b>step</b> is as described above.
-<br/><b>generator(paper,x,y,color,step,attributes)</b> - A function to create an element object corresponding to sample (<b>x</b>,<b>y</b>) from the image.  <b>paper</b> is the Raphael object we are drawing to.  <b>step</b> and <b>attributes</b> are as described above.   Must return Raphaël element object
+<br/><b>shape</b> - A string indicating which built in Raphaël element generator to use.  Either 'circ' or 'rect'.  By default 'circ'.
+<br/><b>attributes</b> - An associative array describing the attibutes each Raphaël element will have to start.  By default {stroke: "none"}.
+<br/><b>animator(element,x,y,step)</b> - A function to provide each Raphaël element with an animation. <b>element</b> is a generated Raphaël element with the color sample from (<b>x</b>,<b>y</b>).  <b>step</b> is as described above.
+<br/><b>generator(paper,x,y,color,step,attributes)</b> - A function to create a Raphaël element corresponding to sample (<b>x</b>,<b>y</b>) from the source image.  <b>paper</b> is the Raphaël object we are drawing to.  <b>step</b> and <b>attributes</b> are as described above.   This function must return a Raphaël element object.
 </p>
 
 <h3>Compatibility and Performance</h3>
 
 <p>SeuratJS' performance is largely tied to your browser's ability to handle SVG.  SeuratJS runs extremely well in IE9 and Chrome.  Surprisingly, Firefox can be slightly choppy with a large number of elements. </p>
-<p>Long story short, the fewer things moving at one time, the smoother your animation is going to be.  If you run into a situation where performance is unsatisfactory, either increase the step size when calling seurat() or increase your animation delays if performance isn't to your liking.</p>
+<p>Long story short, the fewer things moving at one time, the smoother your animation is going to be.  If you run into a situation where performance is unsatisfactory, either increase the step size when calling seurat() or increase your animation delays until performance is to your liking.</p>
 
 <h3>Authors and Contributors</h3>
 <p>SeuratJS is the work of Greg Smith (<a href="https://github.com/gsmith85" class="user-mention">@gsmith85</a>).  A special thanks to Scott Werner (<a href="https://github.com/swerner" class="user-mention">@swerner</a>) for being a second pair of eyes.</p>  
