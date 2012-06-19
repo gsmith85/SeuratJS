@@ -1,11 +1,11 @@
-#SeuratJS
+﻿#SeuratJS
 
-**A Raphaël plugin for creating beautiful pointillized animations.**
+**A Raphaël plugin for creating beautiful pointilized animations.**
 
 **Website**: http://seuratjs.com
 
 
-##Pointillize and Pixelize all on the Client Side
+##Pointilize and Pixelize all on the Client Side
 
 SeuratJS is a JavaScript library that extends Raphaël and allows for the creation of vivid animations and pixelated artwork using minimal code. It does this by extacting color data from an image of your choice and rebuilding the original with filled graphical primitives in SVG. Seurat makes it extremely easy to alter what primitives are generated (how they look and where they appear) and how they animate.
 
