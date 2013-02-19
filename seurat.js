@@ -64,5 +64,6 @@ Raphael.fn.seurat = function (settings) {
 			if(animator!=null) animator(elm,x,y,step);
 		}
 	}
+	img.crossOrigin = '';
 	img.src = imageSource;
 };
