@@ -63,10 +63,10 @@ _gaq.push(['_trackPageview']);
 		<h3>The Basics (Click the images!)</h3>
 
 		<p><img src="s1.png" id="ex1" class='seuratjs-example' animation="a1" /></p>
-		<pre><code>paper.seurat({ imageSource: 'gray-weather.png' });</code></pre>
+		<pre><code>paper.seurat({ imageSource: 'boat.png' });</code></pre>
 
 		<p style='clear:both'><img src="s2.png" id="ex2" class='seuratjs-example' animation="a2"></img></p>
-		<pre><code>paper.seurat({ imageSource: 'fort-samson.png', shape: "rect"});</code></pre>
+		<pre><code>paper.seurat({ imageSource: 'summer-field.png', shape: "rect"});</code></pre>
 
 		
 		<h3>Now Let's Get Things Moving (Keep clicking!)</h3>
@@ -94,7 +94,7 @@ _gaq.push(['_trackPageview']);
 </code></pre>
 
 <p style='clear:both'><img src="s5.png" id="ex5" class='seuratjs-example' animation="a5"></img></p>
-<pre><code>paper.seurat({ imageSource: 'circus-sideshow.png',
+<pre><code>paper.seurat({ imageSource: 'elephants.png',
   animator: function(elm,x,y,step){
   var anim = Raphael.animation({cx: (Math.random()*720), 
     cy: (Math.random()*180), r: (Math.random()*15)}, 2e3, 
@@ -108,7 +108,7 @@ _gaq.push(['_trackPageview']);
 </code></pre>
 
 <p style='clear:both'><img src="s6.png" id="ex6" class='seuratjs-example' animation="a6"></img></p>
-<pre><code>paper.seurat({ imageSource: 'laborers.png',
+<pre><code>paper.seurat({ imageSource: 'farm-field.png',
   step: 6,
   generator: function(ppr,x,y,color,step,attributes){
 	return ppr.circle(x, 1, step/2-1)
@@ -136,11 +136,11 @@ _gaq.push(['_trackPageview']);
 
 <h3>Compatibility and Performance</h3>
 
-<p>SeuratJS' performance is largely tied to your browser's ability to handle SVG.  SeuratJS runs extremely well in IE9 and Chrome.  Surprisingly, Firefox can be slightly choppy with a large number of elements. </p>
+<p>SeuratJS' performance is largely tied to your browser's ability to handle SVG.  SeuratJS runs well in IE9+, Chrome 20+ and Firefox 6+.</p>
 <p>Long story short, the fewer things moving at one time, the smoother your animation is going to be.  If you run into a situation where performance is unsatisfactory, either increase the step size when calling seurat() or increase your animation delays until performance is to your liking.</p>
 
 <h3>Authors and Contributors</h3>
-<p>SeuratJS is the work of Greg Smith (<b>T:</b> <a href="https://twitter.com/#!/vpitriumph">@vpiTriumph</a> | <b>GH:</b> <a href="https://github.com/gsmith85" class="user-mention">gsmith85</a>).  A special thanks to Scott Werner (<b>T:</b> <a href="https://twitter.com/#!/scottwisme">@scottwiseme</a> | <b>GH:</b> <a href="https://github.com/swerner" class="user-mention">swerner</a>) for being a second pair of eyes.</p>  
+<p>SeuratJS is the work of Greg Smith (<b>GH:</b> <a href="https://github.com/gsmith85" class="user-mention">gsmith85</a>).  A special thanks to Scott Werner (<b>GH:</b> <a href="https://github.com/swerner" class="user-mention">swerner</a>) for being a second pair of eyes.</p>  
 <p>Anyone else out there, feel free to contribute!  If you find a bug, report it.  If you want to write some code, hack it.  If you want to make suggestions, let us know what you need.  Let's build something awesome together!</p>
 
       </section>
