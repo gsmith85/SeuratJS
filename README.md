@@ -29,7 +29,7 @@ Now that you’ve seen how easy it is to use SeuratJS, grab a copy off the sourc
 
 ## Compatibility and Performance
 
-SeuratJS' performance is largely tied to your browser's ability to handle SVG. SeuratJS runs extremely well in IE9 and Chrome. Surprisingly, Firefox can be slightly choppy with a large number of elements.
+SeuratJS' performance is largely tied to your browser's ability to handle SVG. SeuratJS runs extremely well in IE9+, Chrome 20+ and Firefox 6+.
 
 Long story short, the fewer things moving at one time, the smoother your animation is going to be. If you run into a situation where performance is unsatisfactory, either increase the step size when calling seurat() or increase your animation delays if performance isn't to your liking.
 
